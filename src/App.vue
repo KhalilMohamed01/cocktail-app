@@ -1,7 +1,7 @@
 <template>
-  <div class="container mx-auto">
-    <h1 class="text-4xl text-center mt-10 mb-5">Random Cocktails</h1>
-    <button @click="fetchCocktails" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-5">Refresh Cocktails</button>
+  <div class="w-full">
+    <NavBar @refresh-cocktails="fetchCocktails"/>
+   
     <div class="flex flex-wrap justify-center">
       <CocktailCard v-for="(cocktail, index) in cocktails" :key="index" :cocktail="cocktail" />
     </div>
@@ -10,10 +10,12 @@
 
 <script>
 import CocktailCard from './components/CocktailCard.vue';
+import NavBar from './components/NavBar.vue';
 
 export default {
   name: 'App',
   components: {
+    NavBar,
     CocktailCard
   },
   data() {
