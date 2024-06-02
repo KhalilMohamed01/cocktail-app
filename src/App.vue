@@ -1,43 +1,57 @@
 <template>
-  <div class="w-full">
-    <NavBar @refresh-cocktails="fetchCocktails"/>
-   
-    <div class="flex flex-wrap justify-center">
-      <CocktailCard v-for="(cocktail, index) in cocktails" :key="index" :cocktail="cocktail" />
+  <div >
+    <div class="flex h-screen">
+      <CocktailColumn
+        v-for="(cocktail, index) in cocktails"
+        :key="index"
+        :cocktail="cocktail"
+        :isExpanded="expandedColumn === index"
+        @click="expandColumn(index)"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import CocktailCard from './components/CocktailCard.vue';
-import NavBar from './components/NavBar.vue';
+import axios from 'axios';
+import CocktailColumn from './components/CocktailColumn.vue';
 
 export default {
   name: 'App',
   components: {
-    NavBar,
-    CocktailCard
+    CocktailColumn,
   },
   data() {
     return {
-      cocktails: []
-    }
+      cocktails: [],
+      expandedColumn: 0,
+    };
   },
   methods: {
+    expandColumn(index) {
+      this.expandedColumn = index;
+    },
     async fetchCocktails() {
-      this.cocktails = [];
-      for (let i = 0; i < 3; i++) {
-        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
-        const data = await response.json();
-        this.cocktails.push(data.drinks[0]);
+      try {
+        const promises = Array(3)
+          .fill(null)
+          .map(() => axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php'));
+        const responses = await Promise.all(promises);
+        this.cocktails = responses.map(response => response.data.drinks[0]);
+      } catch (error) {
+        console.error('Error fetching cocktails:', error);
       }
-    }
+    },
   },
-  mounted() {
+  created() {
     this.fetchCocktails();
-  }
-}
+  },
+};
 </script>
 
-<style scoped>
+<style>
+.container {
+  width: 100%;
+  height: 100%;
+}
 </style>
