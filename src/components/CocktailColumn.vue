@@ -3,13 +3,13 @@
     :class="[
       'flex flex-col transition-all duration-500',
       'slide-in',
-      isExpanded ? 'flex-grow w-full md:w-11/12' : 'items-center w-full md:w-1/12 cursor-pointer hover:bg-[#f1d49e81]',
+      isExpanded ? 'flex-grow w-full md:w-11/12' : 'items-center w-full md:w-1/12 cursor-pointer hover:bg-hoverBg',
       columnColor
     ]"
     @click="$emit('click')"
     :style="{ animationDelay: `${index * 0.5}s` }"
   >
-    <div v-if="isExpanded" class="mt-2 ml-4 text-[#989A8C]">
+    <div v-if="isExpanded" class="mt-2 ml-4 text-textColor">
       <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 font-title font-bold mr-4 mb-2" :style="{ fontSize: '4vw' }">
         <span class="text-center">{{ columnNumber }}</span>
       </div>
@@ -21,11 +21,11 @@
             <font-awesome-icon :icon="['fas', 'champagne-glasses']" />
             &nbsp;&nbsp;<span>{{ cocktail.strCategory }}</span>
           </p>
-          <p class="text-md md:text-xl text-[#666666] max-w-screen-md mb-4">
+          <p class="text-md md:text-xl text-textLight max-w-screen-md mb-4">
             {{ cocktail.strInstructions }}
           </p>
           <div class="mb-4">
-            <table class="table-auto w-full text-left text-[#989A8C]">
+            <table class="table-auto w-full text-left text-textColor">
               <thead>
                 <tr>
                   <th class="px-4 py-2">Ingredient</th>
@@ -34,8 +34,8 @@
               </thead>
               <tbody>
                 <tr v-for="(ingredient, index) in ingredients" :key="index">
-                  <td class="border border-[#989A8C] text-gray-700 px-4 py-2">{{ ingredient.name }}</td>
-                  <td class="border border-[#989A8C] text-gray-700 px-4 py-2">{{ ingredient.measure }}</td>
+                  <td class="border border-textColor text-gray-700 px-4 py-2">{{ ingredient.name }}</td>
+                  <td class="border border-textColor text-gray-700 px-4 py-2">{{ ingredient.measure }}</td>
                 </tr>
               </tbody>
             </table>
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div v-else id="non-expanded" class="mt-2 h-full flex items-start font-title font-bold text-[#989A8C] number-animation" :style="{ fontSize: '4vw' }">
+    <div v-else id="non-expanded" class="mt-2 h-full flex items-start font-title font-bold text-textColor number-animation" :style="{ fontSize: '4vw' }">
       <span class="text-center">{{ columnNumber }}</span>
     </div>
   </div>
@@ -87,15 +87,6 @@ export default {
 <style scoped>
 .flex-grow {
   flex-grow: 1;
-}
-.bg-color1 {
-  background-color: #FDFCF8;
-}
-.bg-color2 {
-  background-color: #F6F3EA;
-}
-.bg-color3 {
-  background-color: #F0ECE0;
 }
 .number-animation {
   transition: transform 0.3s ease-in-out;

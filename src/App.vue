@@ -12,7 +12,7 @@
     </div>
     <button
       @click="fetchCocktails"
-      class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-yellow-900 cursor-pointer hover:bg-yellow-800 text-white p-4 rounded-full shadow-lg flex items-center"
+      class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-buttonBg cursor-pointer hover:bg-buttonHover text-white p-4 rounded-full shadow-lg flex items-center"
     >
       <font-awesome-icon :icon="['fas', 'dice']" class="mr-2" />
       Refresh Cocktails
