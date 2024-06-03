@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <div class="flex h-screen">
+  <div class="h-[100vh]">
+    <div class="flex flex-wrap md:flex-nowrap h-full">
       <CocktailColumn
         v-for="(cocktail, index) in cocktails"
         :key="index"
@@ -50,8 +50,7 @@ export default {
 </script>
 
 <style>
-.container {
-  width: 100%;
+.h-full {
   height: 100%;
 }
 </style>
