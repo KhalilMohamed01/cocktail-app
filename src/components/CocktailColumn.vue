@@ -17,14 +17,14 @@
         <img :src="cocktail.strDrinkThumb" alt="Cocktail Image" class="w-full md:w-1/3 aspect-square mb-2 rounded-lg" />
         <div class="pl-0 md:pl-8">
           <span class="font-title font-bold" :style="{ fontSize: '5vw' }">{{ cocktail.strDrink }}</span>
-          <p class="mb-4">
+          <p id="category" class="mb-4">
             <font-awesome-icon :icon="['fas', 'champagne-glasses']" />
             &nbsp;&nbsp;<span>{{ cocktail.strCategory }}</span>
           </p>
           <p class="text-md md:text-xl text-[#666666] max-w-screen-md mb-4">
             {{ cocktail.strInstructions }}
           </p>
-          <div class="mb-4 overflow-auto max-h-60">
+          <div class="mb-4">
             <table class="table-auto w-full text-left text-[#989A8C]">
               <thead>
                 <tr>
@@ -40,15 +40,15 @@
               </tbody>
             </table>
           </div>
-          <p class="mb-4">
+          <p id="glass" class="mb-4">
             <font-awesome-icon :icon="['fas', 'martini-glass']" />
             {{ cocktail.strGlass }}
           </p>
         </div>
       </div>
     </div>
-    <div v-else class="mt-2 h-full flex items-start font-title font-bold text-[#989A8C] number-animation" :style="{ fontSize: '4vw' }">
-      {{ columnNumber }}
+    <div v-else id="non-expanded" class="mt-2 h-full flex items-start font-title font-bold text-[#989A8C] number-animation" :style="{ fontSize: '4vw' }">
+      <span class="text-center">{{ columnNumber }}</span>
     </div>
   </div>
 </template>
